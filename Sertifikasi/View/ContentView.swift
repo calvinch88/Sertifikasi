@@ -33,7 +33,7 @@ struct ContentView: View {
                     
                 }, label: {
                     NavigationLink(destination: TampilanUser(pengolah: PengolahDatabasePerpustakaan())) {
-                         Text("user")
+                         Text("pengunjung")
                      }
                 })
                 Spacer()
