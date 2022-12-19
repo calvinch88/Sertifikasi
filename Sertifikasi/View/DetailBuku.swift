@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct DetailBuku: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -17,7 +18,11 @@ struct DetailBuku: View {
     @State private var namaBuku: String = ""
     @State private var tersedia: Bool = true
     
+    @State private var gambarBuku: [PhotosPickerItem] = []
+    @State private var data: Data?
+    
     @Binding var refresh: Bool
+    @State private var isiForm: Bool = false
     
     let pengolah: PengolahDatabasePerpustakaan
     
@@ -25,19 +30,60 @@ struct DetailBuku: View {
         VStack {
             TextField(admin.nama_buku ?? "", text: $namaBuku)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button("update"){
-                if !namaBuku.isEmpty {
-                    admin.nama_buku = namaBuku
-                    pengolah.updateBuku()
-                    refresh.toggle()
-                    presentationMode.wrappedValue.dismiss()
+            if let data = data, let gambar = UIImage(data: data) {
+                Image(uiImage: gambar)
+                    .resizable()
+            } else {
+                Text("mau update gambar? kalau ngga abaikan")
+            }
+            PhotosPicker(
+                selection: $gambarBuku,
+                maxSelectionCount: 1,
+                matching: .images
+            ) {
+                Text("ganti gambar")
+            }.onChange(of: gambarBuku) { valueGambar in
+                guard let item = gambarBuku.first else {
+                    return
+                }
+                item.loadTransferable(type: Data.self) { result in
+                    switch result {
+                    case .success(let success):
+                        if let data = success {
+                            self.data = data
+                        } else {
+                            print("tidak ada gambar")
+                        }
+                    case .failure(let failure):
+                        fatalError("gagal upload : \(failure)")
+                    }
+                    
                 }
             }
-            VStack{
-                HStack{
-                    Text(admin.id_buku ?? "")
-                    Text(admin.nama_buku ?? "")
+            Button("update"){
+                if !namaBuku.isEmpty {
+                    if let data = data {
+                        guard let bukugambar = UIImage(data: data) else { return }
+                        admin.nama_buku = namaBuku
+                        admin.gambar_buku = bukugambar
+                        pengolah.updateBuku()
+                        refresh.toggle()
+                        presentationMode.wrappedValue.dismiss()
+                    } else {
+                        admin.nama_buku = namaBuku
+                        pengolah.updateBuku()
+                        refresh.toggle()
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                } else {
+                    isiForm = true
                 }
+            }.alert("apa yang di update? masih kosong", isPresented: $isiForm) {
+                Button("oh oke", role: .cancel) { }
+            }
+            VStack{
+                Text("id buku : \(admin.id_buku ?? "")")
+                Text("nama buku : \(admin.nama_buku ?? "")")
                 Image(uiImage: admin.gambar_buku ?? UIImage())
                     .resizable()
                     .frame(width: 250, height: 400)

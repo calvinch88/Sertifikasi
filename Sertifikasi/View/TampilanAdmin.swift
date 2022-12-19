@@ -42,7 +42,6 @@ struct TampilanAdmin: View {
                 maxSelectionCount: 1,
                 matching: .images
             ) {
-                
                 Text("pilih gambar")
             }.onChange(of: gambarBuku) { valueGambar in
                 guard let item = gambarBuku.first else {
@@ -60,7 +59,6 @@ struct TampilanAdmin: View {
                     case .failure(let failure):
                         fatalError("gagal upload : \(failure)")
                     }
-                    
                 }
             }
             if resetFoto == false {

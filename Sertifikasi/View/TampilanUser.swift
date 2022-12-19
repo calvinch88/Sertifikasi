@@ -11,9 +11,9 @@ struct TampilanUser: View {
     
     let pengolah: PengolahDatabasePerpustakaan
     @State private var adminPerpus: [Admin] = [Admin]()
-    @State private var refresh: Bool = false
     @State private var bukuTersedia: [Admin] = []
     @State private var bukuPinjam: [Admin] = []
+    @State private var refresh: Bool = false
     
     var body: some View {
         VStack {
