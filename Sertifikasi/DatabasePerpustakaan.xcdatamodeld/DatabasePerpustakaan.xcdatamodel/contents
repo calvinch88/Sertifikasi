@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Admin" representedClassName="Admin" syncable="YES">
-        <attribute name="gambar_buku" optional="YES" attributeType="String"/>
+        <attribute name="gambar_buku" attributeType="Transformable" customClassName="UIImage"/>
         <attribute name="id_buku" attributeType="String"/>
         <attribute name="nama_buku" attributeType="String"/>
         <attribute name="tersedia" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="bukuid" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="buku_id" inverseEntity="User"/>
+        <relationship name="bukuid" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="buku_id" inverseEntity="User"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="id_buku" optional="YES" attributeType="String"/>
         <attribute name="tanggal_kembali" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="tanggal_pinjam" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="buku_id" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Admin" inverseName="bukuid" inverseEntity="Admin"/>
+        <relationship name="buku_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Admin" inverseName="bukuid" inverseEntity="Admin"/>
     </entity>
 </model>

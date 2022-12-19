@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct TampilanAdmin: View {
     
@@ -24,6 +25,8 @@ struct TampilanAdmin: View {
     }
     
     @State private var isiForm: Bool = false
+    @State private var gambarBuku: [PhotosPickerItem] = []
+    @State private var data: Data?
     
     var body: some View {
         VStack {
@@ -33,12 +36,46 @@ struct TampilanAdmin: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("nama buku", text: $namaBuku)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+            PhotosPicker(
+                selection: $gambarBuku,
+                maxSelectionCount: 1,
+                matching: .images
+            ) {
+                Text("pilih gambar")
+            }.onChange(of: gambarBuku) { valueGambar in
+                guard let item = gambarBuku.first else {
+                    return
+                }
+                item.loadTransferable(type: Data.self) { result in
+                    switch result {
+                    case .success(let success):
+                        if let data = success {
+                            self.data = data
+                        } else {
+                            print("tidak ada gambar")
+                        }
+                    case .failure(let failure):
+                        fatalError("gagal upload : \(failure)")
+                    }
+                    
+                }
+            }
+            if let data = data, let gambar = UIImage(data: data) {
+                Image(uiImage: gambar)
+                    .resizable()
+            }
             Button("tambah"){
-                if id_buku == "" || namaBuku == "" {
+                if id_buku == "" || namaBuku == "" || gambarBuku == nil {
                     isiForm = true
                 } else {
-                    pengolah.tambahBuku(id_buku: id_buku, nama_buku: namaBuku, tersedia: tersedia)
-                    updateList()
+                    if let data = data {
+                        guard let bukugambar = UIImage(data: data) else { return }
+                        pengolah.tambahBuku(id_buku: id_buku, gambar_buku: bukugambar, nama_buku: namaBuku, tersedia: tersedia)
+                        updateList()
+                        id_buku = ""
+                        namaBuku = ""
+                        gambarBuku = []
+                    }
                 }
             }.alert("isi id buku dan nama buku", isPresented: $isiForm) {
                 Button("oke", role: .cancel) { }

@@ -18,15 +18,18 @@ struct PinjamBuku: View {
     
     var body: some View {
         VStack {
-            Text("buku yang dipinjam")
-                .bold()
             HStack{
+                Text("buku yang dipinjam : ")
+                    .bold()
                 Text(admin.nama_buku ?? "")
             }
+            Image(uiImage: admin.gambar_buku ?? UIImage())
+                .resizable()
+                .frame(width: 250, height: 400)
             Text("tanggal pinjam : \(tanggalPinjam.formatted(date: .long, time: .omitted))")
             Text("tanggal kembali : \(tanggalKembali.formatted(date: .long, time: .omitted))")
             Button("pinjam") {
-                pengolah.pinjamBuku(idbuku: admin.id_buku ?? "", namaBuku: admin.nama_buku ?? "", tanggalPinjam: tanggalPinjam, tanggalKembali: tanggalKembali, tersedia: tersedia)
+                pengolah.pinjamBuku(admin: admin)
                 refresh.toggle()
                 presentationMode.wrappedValue.dismiss()
             }

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class PengolahDatabasePerpustakaan {
     
@@ -33,10 +34,11 @@ class PengolahDatabasePerpustakaan {
         
     }
     
-    func tambahBuku(id_buku: String, nama_buku: String, tersedia: Bool) {
+    func tambahBuku(id_buku: String, gambar_buku: UIImage, nama_buku: String, tersedia: Bool) {
         let buku = Admin(context: isiCoreData.viewContext)
         buku.id_buku = id_buku
         buku.nama_buku = nama_buku
+        buku.gambar_buku = gambar_buku
         buku.tersedia = tersedia
         
         do {
@@ -68,14 +70,26 @@ class PengolahDatabasePerpustakaan {
         }
     }
     
-    func pinjamBuku(idbuku: String, namaBuku: String, tanggalPinjam: Date, tanggalKembali: Date, tersedia: Bool) {
-        let buku = Admin(context: isiCoreData.viewContext)
-        buku.id_buku = idbuku
-        buku.nama_buku = namaBuku
-        buku.tersedia = tersedia
+    func bukuPinjaman() -> [User] {
+        
+        let fetchReq: NSFetchRequest<User> = User.fetchRequest()
+        
+        do {
+            return try isiCoreData.viewContext.fetch(fetchReq)
+        } catch {
+            return []
+        }
+        
+    }
+    
+    func pinjamBuku(admin: Admin) {
+        let tanggalPinjam = Date.now
+        let tanggalKembali = Date(timeIntervalSinceNow: 604800)
+        
+        admin.setValue(false, forKey: "tersedia")
         
         let pinjam = User(context: isiCoreData.viewContext)
-        pinjam.id_buku = buku.id_buku
+        pinjam.buku_id = admin
         pinjam.tanggal_pinjam = tanggalPinjam
         pinjam.tanggal_kembali = tanggalKembali
         

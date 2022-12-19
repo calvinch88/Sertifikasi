@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A36A56CB29503821005CC089 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A56C729503821005CC089 /* User+CoreDataClass.swift */; };
+		A36A56CC29503821005CC089 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A56C829503821005CC089 /* User+CoreDataProperties.swift */; };
+		A36A56CD29503821005CC089 /* Admin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A56C929503821005CC089 /* Admin+CoreDataClass.swift */; };
+		A36A56CE29503821005CC089 /* Admin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A56CA29503821005CC089 /* Admin+CoreDataProperties.swift */; };
 		A36A859C294E3E1A00A4C5A3 /* PinjamBuku.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A859B294E3E1A00A4C5A3 /* PinjamBuku.swift */; };
-		A36A85C4294F669A00A4C5A3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A85C0294F669A00A4C5A3 /* User+CoreDataClass.swift */; };
-		A36A85C5294F669A00A4C5A3 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A85C1294F669A00A4C5A3 /* User+CoreDataProperties.swift */; };
-		A36A85C6294F669A00A4C5A3 /* Admin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A85C2294F669A00A4C5A3 /* Admin+CoreDataClass.swift */; };
-		A36A85C7294F669A00A4C5A3 /* Admin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36A85C3294F669A00A4C5A3 /* Admin+CoreDataProperties.swift */; };
 		A3FA1408294CC60E008D4562 /* SertifikasiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FA1407294CC60E008D4562 /* SertifikasiApp.swift */; };
 		A3FA140A294CC60E008D4562 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FA1409294CC60E008D4562 /* ContentView.swift */; };
 		A3FA140C294CC60F008D4562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3FA140B294CC60F008D4562 /* Assets.xcassets */; };
@@ -24,11 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A36A56C729503821005CC089 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A36A56C829503821005CC089 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A36A56C929503821005CC089 /* Admin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Admin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A36A56CA29503821005CC089 /* Admin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Admin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A36A859B294E3E1A00A4C5A3 /* PinjamBuku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinjamBuku.swift; sourceTree = "<group>"; };
-		A36A85C0294F669A00A4C5A3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A36A85C1294F669A00A4C5A3 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A36A85C2294F669A00A4C5A3 /* Admin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Admin+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A36A85C3294F669A00A4C5A3 /* Admin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Admin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3FA1404294CC60E008D4562 /* Sertifikasi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sertifikasi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FA1407294CC60E008D4562 /* SertifikasiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SertifikasiApp.swift; sourceTree = "<group>"; };
 		A3FA1409294CC60E008D4562 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,10 +113,10 @@
 		A3FA1425294DF24B008D4562 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A36A85C0294F669A00A4C5A3 /* User+CoreDataClass.swift */,
-				A36A85C1294F669A00A4C5A3 /* User+CoreDataProperties.swift */,
-				A36A85C2294F669A00A4C5A3 /* Admin+CoreDataClass.swift */,
-				A36A85C3294F669A00A4C5A3 /* Admin+CoreDataProperties.swift */,
+				A36A56C729503821005CC089 /* User+CoreDataClass.swift */,
+				A36A56C829503821005CC089 /* User+CoreDataProperties.swift */,
+				A36A56C929503821005CC089 /* Admin+CoreDataClass.swift */,
+				A36A56CA29503821005CC089 /* Admin+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,15 +193,15 @@
 			files = (
 				A3FA1422294DF184008D4562 /* TampilanUser.swift in Sources */,
 				A36A859C294E3E1A00A4C5A3 /* PinjamBuku.swift in Sources */,
-				A36A85C6294F669A00A4C5A3 /* Admin+CoreDataClass.swift in Sources */,
+				A36A56CD29503821005CC089 /* Admin+CoreDataClass.swift in Sources */,
 				A3FA1420294DF172008D4562 /* TampilanAdmin.swift in Sources */,
 				A3FA141E294CC95F008D4562 /* Perpustakan.swift in Sources */,
-				A36A85C7294F669A00A4C5A3 /* Admin+CoreDataProperties.swift in Sources */,
+				A36A56CE29503821005CC089 /* Admin+CoreDataProperties.swift in Sources */,
 				A3FA141C294CC638008D4562 /* DatabasePerpustakaan.xcdatamodeld in Sources */,
-				A36A85C4294F669A00A4C5A3 /* User+CoreDataClass.swift in Sources */,
+				A36A56CB29503821005CC089 /* User+CoreDataClass.swift in Sources */,
 				A3FA1428294DFBD5008D4562 /* DetailBuku.swift in Sources */,
 				A3FA140A294CC60E008D4562 /* ContentView.swift in Sources */,
-				A36A85C5294F669A00A4C5A3 /* User+CoreDataProperties.swift in Sources */,
+				A36A56CC29503821005CC089 /* User+CoreDataProperties.swift in Sources */,
 				A3FA1408294CC60E008D4562 /* SertifikasiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
