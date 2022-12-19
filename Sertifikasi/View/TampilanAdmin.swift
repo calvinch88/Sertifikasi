@@ -25,6 +25,7 @@ struct TampilanAdmin: View {
     }
     
     @State private var isiForm: Bool = false
+    @State private var resetFoto: Bool = false
     @State private var gambarBuku: [PhotosPickerItem] = []
     @State private var data: Data?
     
@@ -41,6 +42,7 @@ struct TampilanAdmin: View {
                 maxSelectionCount: 1,
                 matching: .images
             ) {
+                
                 Text("pilih gambar")
             }.onChange(of: gambarBuku) { valueGambar in
                 guard let item = gambarBuku.first else {
@@ -51,6 +53,7 @@ struct TampilanAdmin: View {
                     case .success(let success):
                         if let data = success {
                             self.data = data
+                            resetFoto = false
                         } else {
                             print("tidak ada gambar")
                         }
@@ -60,9 +63,11 @@ struct TampilanAdmin: View {
                     
                 }
             }
-            if let data = data, let gambar = UIImage(data: data) {
-                Image(uiImage: gambar)
-                    .resizable()
+            if resetFoto == false {
+                if let data = data, let gambar = UIImage(data: data) {
+                    Image(uiImage: gambar)
+                        .resizable()
+                }
             }
             Button("tambah"){
                 if id_buku == "" || namaBuku == "" || gambarBuku == nil {
@@ -74,7 +79,7 @@ struct TampilanAdmin: View {
                         updateList()
                         id_buku = ""
                         namaBuku = ""
-                        gambarBuku = []
+                        resetFoto = true
                     }
                 }
             }.alert("isi id buku dan nama buku", isPresented: $isiForm) {
