@@ -12,19 +12,17 @@ struct TampilanUser: View {
     let pengolah: PengolahDatabasePerpustakaan
     @State private var adminPerpus: [Admin] = [Admin]()
     @State private var refresh: Bool = false
+    @State private var bukuTersedia: [Admin] = []
+    @State private var bukuPinjam: [Admin] = []
     
     var body: some View {
         VStack {
             Text("buku yang sedang dipinjam")
                 .bold()
             List {
-                ForEach (adminPerpus, id: \.self) { adminPerpus in
+                ForEach (bukuPinjam, id: \.self) { adminPerpus in
                     HStack {
-                        if adminPerpus.tersedia == false {
-                            Text(adminPerpus.nama_buku ?? "")
-                        } else {
-//                            Text("belum ada buku yang dipinjam")
-                        }
+                        Text(adminPerpus.nama_buku ?? "")
                     }
                 }
             }.listStyle(PlainListStyle())
@@ -32,17 +30,11 @@ struct TampilanUser: View {
             Text("buku yang dapat dipinjam")
                 .bold()
             List {
-                ForEach (adminPerpus, id: \.self) { adminPerpus in
+                ForEach (bukuTersedia, id: \.self) { adminPerpus in
                     NavigationLink(
                         destination: PinjamBuku(pengolah: pengolah, refresh: $refresh, admin: adminPerpus),
                         label: {
-                            HStack {
-                                if adminPerpus.tersedia == true {
-                                    Text(adminPerpus.nama_buku ?? "")
-                                } else {
-//                                    Text("belum ada buku yang bisa dipinjam")
-                                }
-                            }
+                            Text(adminPerpus.nama_buku ?? "")
                         }
                     )
                 }
@@ -51,6 +43,8 @@ struct TampilanUser: View {
             Spacer()
                 .onAppear(perform: {
                     adminPerpus = pengolah.semuaBuku()
+                    bukuTersedia = adminPerpus.filter({$0.tersedia == true})
+                    bukuPinjam = adminPerpus.filter({$0.tersedia == false})
                 })
         }
     }
